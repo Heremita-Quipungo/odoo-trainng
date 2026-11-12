@@ -1,5 +1,5 @@
 {
-    "name": "Kawiil Financing: Loan Management",
+    "name": "Kawiil Financing",
     "version": "1.0.0",
     "category": "Kawiil/Custom Modules",
     "summary": "Streamlines the loan application process for dealerships.",
