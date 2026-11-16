@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!--    Action-->
+    <record id="action_loan_application" model="ir.actions.act_window">
+        <field name="name">Loan Applications</field>
+        <field name="res_model">loan.application</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first loan application!
+            </p>
+            <p>
+                Manage motorcycle financing applications.
+            </p>
+        </field>
+    </record>
+
+    <!--    view list -->
+
+    <record id="view_loan_application_list" model="ir.ui.view">
+        <field name="name">loan.application.list</field>
+        <field name="model">loan.application</field>
+        <field name="arch" type="xml">
+            <list string="Loan Applications"
+                  default_order="name asc">
+
+                <field name="name" string="Application Number"/>
+                <field name="partner_id" string="Customer"/>
+                <field name="loan_amount"
+                       string="Loan Amount"
+                       widget="monetary"/>
+
+                <field name="state"
+                       string="Status"
+                       widget="badge"
+                       decoration-muted="state == 'draft'"
+                       decoration-success="state == 'approved'"
+                       decoration-info="state == 'credit_check'"
+                       decoration-danger="state == 'rejected'"
+                       decoration-warning="state == 'signed'"/>
+
+            </list>
+        </field>
+    </record>
+
+    <!-- Loan Application Form View -->
+    <record id="view_loan_application_form" model="ir.ui.view">
+        <field name="name">loan.application.form</field>
+        <field name="model">loan.application</field>
+        <field name="arch" type="xml">
+            <form string="Loan Application">
+                <header>
+                    <field name="state"
+                           widget="statusbar"
+                           statusbar_visible="draft,credit_check,approved,signed"/>
+                </header>
+
+                <sheet>
+                    <field name="currency_id" invisible="1"/>
+
+                    <!-- Application Reference -->
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"
+                                   placeholder="Application Number"
+                                   nolabel="1"/>
+                        </h1>
+                    </div>
+
+                    <!-- Customer Information -->
+                    <group>
+                        <group>
+                            <field name="partner_id" string="Customer"/>
+                            <field name="product_id" string="Motorcycle"/>
+                        </group>
+                        <group>
+                            <field name="date_applied" string="Application Date"/>
+                            <field name="user_id" string="Salesperson"/>
+                        </group>
+                    </group>
+
+                    <!-- Financial Information -->
+                    <notebook>
+                        <page string="Financials" name="financials">
+                            <group>
+                                <group>
+                                    <field name="loan_amount"/>
+                                    <field name="down_payment"/>
+                                </group>
+                                <group>
+                                    <field name="loan_term" string="Term (Months)"/>
+                                    <field name="interest_rate"/>
+                                </group>
+                            </group>
+                        </page>
+
+                        <!-- Internal Notes -->
+                        <page string="Internal Notes" name="internal_notes">
+                            <field name="notes"
+                                   nolabel="1"
+                                   placeholder="Add internal notes about this application..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!--    search views-->
+    <record id="view_loan_application_search" model="ir.ui.view">
+        <field name="name">loan.application.search</field>
+        <field name="model">loan.application</field>
+        <field name="arch" type="xml">
+            <search>
+                <!-- Search Fields -->
+                <field name="name" string="Application Number"/>
+                <field name="partner_id" string="Customer"/>
+
+                <separator/>
+
+                <!-- Predefined Filters -->
+                <filter name="archived"
+                        string="Archived"
+                        domain="[('active', '=', False)]"/>
+
+                <filter name="draft"
+                        string="Draft"
+                        domain="[('state', '=', 'draft')]"/>
+
+                <filter name="approved"
+                        string="Approved"
+                        domain="[('state', '=', 'approved')]"/>
+
+                <separator/>
+
+                <!-- Group By -->
+                <group>
+                    <filter name="group_by_state"
+                            string="Status"
+                            context="{'group_by': 'state'}"/>
+
+                    <filter name="group_by_partner"
+                            string="Customer"
+                            context="{'group_by': 'partner_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+</odoo>
