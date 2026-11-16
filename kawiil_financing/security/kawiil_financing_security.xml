@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- User: Restrict modifications to unsigned loans -->
+    <record id="rule_loan_application_user_signed" model="ir.access">
+        <field name="name">Financing User: Restrict Signed Loans</field>
+        <field name="model_id" ref="model_loan_application"/>
+        <field name="group_id" ref="group_financing_user"/>
+        <field name="operation">u</field>
+        <field name="domain">[('state', '!=', 'signed')]</field>
+    </record>
+
+    <!-- Admin: Allow modifications to all loans -->
+    <record id="rule_loan_application_admin_signed" model="ir.access">
+        <field name="name">Financing Admin: Allow Signed Loans</field>
+        <field name="model_id" ref="model_loan_application"/>
+        <field name="group_id" ref="group_financing_admin"/>
+        <field name="operation">u</field>
+        <field name="domain">[(1, '=', 1)]</field>
+    </record>
+</odoo>

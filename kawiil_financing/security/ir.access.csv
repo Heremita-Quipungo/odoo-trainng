@@ -1,0 +1,9 @@
+id,name,model_id,group_id/id,operation,domain
+access_loan_application_user,Loan Application User,loan.application,kawiil_financing.group_financing_user,cru,
+access_loan_application_admin,Loan Application Admin,loan.application,kawiil_financing.group_financing_admin,crud,
+access_loan_application_tag_admin,Loan Tag Admin,loan.application.tag,kawiil_financing.group_financing_admin,crud,
+access_loan_application_tag_user,Loan Tag User,loan.application.tag,kawiil_financing.group_financing_user,r,
+access_loan_application_document_type_admin,Loan Document Type Admin,loan.application.document.type,kawiil_financing.group_financing_admin,crud,
+access_loan_application_document_type_user,Loan Document Type User,loan.application.document.type,kawiil_financing.group_financing_user,r,
+access_loan_application_document_admin,Loan Document Admin,loan.application.document,kawiil_financing.group_financing_admin,crud,
+access_loan_application_document_user,Loan Document User,loan.application.document,kawiil_financing.group_financing_user,crud,
