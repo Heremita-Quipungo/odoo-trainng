@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- TAGS -->
+
+    <record id="view_loan_application_tag_list" model="ir.ui.view">
+        <field name="name">loan.application.tag.list</field>
+        <field name="model">loan.application.tag</field>
+        <field name="arch" type="xml">
+            <list string="Loan Application Tags" editable="bottom">
+                <field name="name"/>
+                <field name="color" widget="color_picker"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_loan_application_tag" model="ir.actions.act_window">
+        <field name="name">Loan Application Tags</field>
+        <field name="res_model">loan.application.tag</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- DOCUMENT TYPES -->
+
+    <record id="view_loan_application_document_type_list" model="ir.ui.view">
+        <field name="name">loan.application.document.type.list</field>
+        <field name="model">loan.application.document.type</field>
+        <field name="arch" type="xml">
+            <list string="Document Types" editable="bottom">
+                <field name="name"/>
+                <field name="is_required"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_loan_application_document_type" model="ir.actions.act_window">
+        <field name="name">Document Types</field>
+        <field name="res_model">loan.application.document.type</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- CONFIGURATION MENU -->
+
+    <menuitem
+        id="menu_kawiil_financing_configuration"
+        name="Configuration"
+        parent="menu_kawiil_financing_root"
+        sequence="90"
+        groups="kawiil_financing.group_financing_admin"
+    />
+
+    <menuitem
+        id="menu_loan_application_tags"
+        name="Loan Application Tags"
+        parent="menu_kawiil_financing_configuration"
+        action="action_loan_application_tag"
+        sequence="10"
+        groups="kawiil_financing.group_financing_admin"
+    />
+
+    <menuitem
+        id="menu_loan_application_document_types"
+        name="Document Types"
+        parent="menu_kawiil_financing_configuration"
+        action="action_loan_application_document_type"
+        sequence="20"
+        groups="kawiil_financing.group_financing_admin"
+    />
+
+</odoo>
