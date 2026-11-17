@@ -13,7 +13,7 @@ class LoanApplication(models.Model):
         selection=[
             ("draft", "Draft"), ("sent", "Submitted"), ("credit_check", "Credit Check"), ("approved", "Approved"),
             ("rejected", "Rejected"),("signed", "Signed"),("canceled", "Canceled"),
-        ],string="Status", default="draft",copy=False
+        ],string="Status ", default="draft",copy=False
     )
     notes = fields.Html(string="Notes",copy=False,)
     date_applied = fields.Date(string='Application Date', default=fields.Date.today)
